@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Condition;
+import helpers.AllureAttachments;
 import helpers.DriverUtils;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Link;
@@ -27,9 +28,7 @@ public class NexignPageTests extends TestBase {
         step("Проверяем наличие изображения логотипа", () -> {
             $(".header__logo").$("img").should(Condition.exist);
             URL logoUrl = new URL($(".header__logo").$("img").getAttribute("src"));
-            try (InputStream is = logoUrl.openConnection().getInputStream()) {
-                Allure.addAttachment("Logo SVG file","image/svg+xml", is, "svg");
-            }
+            AllureAttachments.addSvgFromUrl("Logo SVG file", logoUrl);
         });
         step("Проверяем видимость изображения логотипа", () -> $(".header__logo").$("img").shouldBe(Condition.visible));
     }

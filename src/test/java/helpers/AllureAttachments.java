@@ -54,4 +54,12 @@ public class AllureAttachments {
             Allure.addAttachment("Video", "video/mp4", videoInputStream, "mp4");
         }
     }
+
+    public static void addSvgFromUrl(String attachName, URL url) {
+        try (InputStream is = url.openConnection().getInputStream()) {
+            Allure.addAttachment(attachName, "image/svg+xml", is, "svg");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
