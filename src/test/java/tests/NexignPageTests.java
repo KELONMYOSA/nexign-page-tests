@@ -63,7 +63,7 @@ public class NexignPageTests extends TestBase {
     @Link(value = "Testing URL", url = "https://nexign.com/ru")
     void emptyWebformTest() {
         step("Открываем страницу 'https://nexign.com/ru'", () -> open("https://nexign.com/ru"));
-        step("", () -> $("#edit-actions-submit").click());
+        step("", () -> $("[value=\"Отправить\"]").click());
         step("", () -> {
             SelenideElement massageList = $(".messages__list").$("li");
             massageList.shouldHave(Condition.text("Поле \"Имя\" обязательно для заполнения."));
